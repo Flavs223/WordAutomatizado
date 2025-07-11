@@ -1,3 +1,4 @@
 python-docx
 num2words
 Pillow
+customtkinter
