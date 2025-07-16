@@ -1,33 +1,32 @@
 import customtkinter as ctk
 
-class FormularioPresupuesto(ctk.CTk):
+class FormularioPresupuesto(ctk.CTkFrame):
+    def __init__(self, parent):
+        super().__init__(parent)
 
-    def __init__(self):
-        super().__init__()
+        ctk.CTkLabel(self, text="Formulario de Presupuesto", font=("Arial", 18, "bold")).pack(pady=10)
 
-        self.title("Generador de Presupuestos")
-        self.geometry("800x600")
+        # Sección de datos generales
+        self.empresa_entry = ctk.CTkEntry(self, placeholder_text="Nombre de la empresa")
+        self.empresa_entry.pack(pady=5)
 
-        self.crear_widgets()
+        self.atencion_entry = ctk.CTkEntry(self, placeholder_text="Atención a:")
+        self.atencion_entry.pack(pady=5)
 
-    def crear_widgets(self):
-        ctk.CTkLabel(self, text="Nombre de la empresa:").grid(row=0, column=0, padx=10, pady=10, sticky="w")
-        self.entrada_empresa = ctk.CTkEntry(self, width=300)
-        self.entrada_empresa.grid(row=0, column=1, padx=10, pady=10)
+        self.proyecto_opciones = ctk.CTkOptionMenu(self, values=["RED", "CCTV", "AUDIO", "TELEFONÍA"])
+        self.proyecto_opciones.set("RED")
+        self.proyecto_opciones.pack(pady=5)
 
-        ctk.CTkLabel(self, text="Atención a:").grid(row=1, column=0, padx=10, pady=10, sticky="w")
-        self.entrada_atencion = ctk.CTkEntry(self, width=300)
-        self.entrada_atencion.grid(row=1, column=1, padx=10, pady=10)
+        # Aquí iría la tabla de productos (por ahora solo etiqueta)
+        ctk.CTkLabel(self, text="(Aquí irá la tabla de productos)", font=("Arial", 12, "italic")).pack(pady=10)
 
-        ctk.CTkLabel(self, text="Proyecto:").grid(row=2, column=0, padx=10, pady=10, sticky="w")
-        self.combo_proyecto = ctk.CTkComboBox(self, values=["RED", "CCTV", "AUDIO", "TELEFONÍA"])
-        self.combo_proyecto.grid(row=2, column=1, padx=10, pady=10)
+        # Totales simulados
+        ctk.CTkLabel(self, text="Subtotal: $____").pack()
+        ctk.CTkLabel(self, text="IVA: $____").pack()
+        ctk.CTkLabel(self, text="ISR: $____").pack()
+        ctk.CTkLabel(self, text="TOTAL: $____").pack(pady=5)
 
-        self.boton_generar = ctk.CTkButton(self, text="Generar documento", command=self.generar_documento)
-        self.boton_generar.grid(row=4, column=0, columnspan=2, pady=20)
-
-    def generar_documento(self):
-        empresa = self.entrada_empresa.get()
-        atencion = self.entrada_atencion.get()
-        proyecto = self.combo_proyecto.get()
-        print(f"[DEBUG] Generando documento para {empresa}, atención: {atencion}, proyecto: {proyecto}")
+        # Botones de acción
+        ctk.CTkButton(self, text="Vista previa").pack(pady=5)
+        ctk.CTkButton(self, text="Generar documento").pack(pady=5)
+        ctk.CTkButton(self, text="Imprimir").pack(pady=5)
