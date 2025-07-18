@@ -7,7 +7,7 @@ class BotonPrincipal(ctk.CTkButton):
             master,
             text=texto,
             command=comando,
-            fg_color="#23aa6b",
+            fg_color="#23aa28",
             hover_color="#1c45cb",
             text_color="white",
             font=("Arial", 14),

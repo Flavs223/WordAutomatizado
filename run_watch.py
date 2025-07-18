@@ -1,3 +1,4 @@
+#Codigo para refrescar la pantalla
 import subprocess
 import time
 import os
